@@ -27,12 +27,12 @@ class PriceUtils {
     } else if (price.isCheap! && !price.isUnderAvg!) {
       return CaptionItem(
         color: CustomColors.semaphoreYellow,
-        text: 'Under average',
+        text: 'Under avg',
       );
     } else if (!price.isCheap! && price.isUnderAvg!) {
       return CaptionItem(
         color: CustomColors.semaphoreOrange,
-        text: 'Above average',
+        text: 'Above avg',
       );
     } else {
       return CaptionItem(

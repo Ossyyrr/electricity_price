@@ -34,6 +34,7 @@ class TodayPrices extends StatelessWidget {
                 }
               }),
         ),
+        const SizedBox(height: 16),
       ],
     );
   }

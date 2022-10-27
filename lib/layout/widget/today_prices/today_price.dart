@@ -26,7 +26,7 @@ class _TodayPriceState extends State<TodayPrice> {
               SizedBox(
                   width: 80,
                   child: Text(
-                    widget.price.hour.toString(),
+                    '${widget.price.hour.toString().substring(0, 2)}:00  ${widget.price.hour.toString().substring(0, 2)}:59',
                     style: const TextStyle(fontSize: 16),
                   )),
               Expanded(
@@ -43,6 +43,7 @@ class _TodayPriceState extends State<TodayPrice> {
                   ],
                 ),
               ),
+              const Text('55%'),
               const SizedBox(width: 24),
               IconButton(
                 onPressed: () => setState(() => showArrowInfo = true),
@@ -60,8 +61,11 @@ class _TodayPriceState extends State<TodayPrice> {
           child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              color: Colors.blue,
-              width: showArrowInfo ? 150 : 0,
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(100), bottomLeft: Radius.circular(100)),
+              ),
+              width: showArrowInfo ? 120 : 0,
               height: 50,
               child: PriceUtils.getPriceCaption(widget.price)),
         ),
