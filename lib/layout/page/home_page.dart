@@ -1,4 +1,6 @@
+import 'package:electricity_price/layout/utils/extensions/datetime_extension.dart';
 import 'package:electricity_price/layout/widget/price_stats_cards.dart';
+import 'package:electricity_price/layout/widget/today_prices/today_prices.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,14 +8,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-// Un appbar con la fecha de hoy
-//Debajo una lista de precios, una tabla
-//debajo el máximo minimo media y current
+// Debajo una lista de precios, una tabla
 
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Precios de la luz')),
       body: SafeArea(
         child: Center(
-          child: PriceStatsCards(),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  DateTime.now().date().toString().substring(0, 10),
+                  style: const TextStyle(fontSize: 20),
+                ),
+              ),
+              const Expanded(child: TodayPrices()),
+              const PriceStatsCards(),
+            ],
+          ),
         ),
       ),
     );
