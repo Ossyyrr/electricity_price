@@ -6,10 +6,13 @@ class PriceStatCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.stream,
+    required this.color,
+
     // que necesita para valer para todo?
   }) : super(key: key);
   final String title;
   final Stream<Price> stream;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -19,7 +22,7 @@ class PriceStatCard extends StatelessWidget {
       height: 70,
       margin: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: color,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Stack(
