@@ -7,11 +7,7 @@ class PricesRepository {
   static final PricesRepository _instance = PricesRepository._internal();
   PricesRepository._internal() {
     // initialization logic
-    getPrices();
-    getAverage();
-    getMaxPrice();
-    getMinPrice();
-    getCurrentPrice();
+    getAllPrices();
   }
 
   factory PricesRepository() {
@@ -73,6 +69,14 @@ class PricesRepository {
   void updateCurrentPrice(Price newCurrentPrice) {
     _currentPrice = newCurrentPrice;
     _currentPriceController.sink.add(newCurrentPrice);
+  }
+
+  Future<void> getAllPrices() async {
+    getPrices();
+    getAverage();
+    getMaxPrice();
+    getMinPrice();
+    getCurrentPrice();
   }
 
   Future<void> getPrices() async {

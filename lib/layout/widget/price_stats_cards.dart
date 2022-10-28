@@ -32,7 +32,7 @@ class PriceStatsCards extends StatelessWidget {
         PriceStatCard(
           title: 'Current',
           stream: priceRepo.currentPriceStream,
-          color: Colors.blue,
+          color: CustomColors.current,
         ),
       ],
     );

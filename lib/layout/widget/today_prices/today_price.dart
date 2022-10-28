@@ -1,4 +1,5 @@
 import 'package:electricity_price/core/model/price_model.dart';
+import 'package:electricity_price/layout/utils/custom_colors.dart';
 import 'package:electricity_price/layout/utils/price_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -33,23 +34,30 @@ class _TodayPriceState extends State<TodayPrice> {
                 child: Row(
                   children: [
                     Text(
-                      widget.price.price.toString(),
-                      style: const TextStyle(
+                      '${widget.price.price} ',
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: PriceUtils.getPriceColor(widget.price),
                       ),
                     ),
-                    Text(widget.price.units),
+                    Text(
+                      widget.price.units,
+                      style: TextStyle(
+                        color: PriceUtils.getPriceColor(widget.price),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const Text('55%'),
+              // TODO %
+              //  const Text('55%'),
               const SizedBox(width: 24),
               IconButton(
                 onPressed: () => setState(() => showArrowInfo = true),
                 icon: Icon(
                   widget.price.isCheap! ? Icons.trending_down : Icons.trending_up,
-                  color: PriceUtils.getPriceColor(widget.price),
+                  color: PriceUtils.getPriceIconColor(widget.price),
                 ),
               ),
               const SizedBox(width: 16),
@@ -59,15 +67,19 @@ class _TodayPriceState extends State<TodayPrice> {
         GestureDetector(
           onTap: () => setState(() => showArrowInfo = false),
           child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(100), bottomLeft: Radius.circular(100)),
-              ),
-              width: showArrowInfo ? 120 : 0,
-              height: 50,
-              child: PriceUtils.getPriceCaption(widget.price)),
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            decoration: BoxDecoration(
+              color: CustomColors.current,
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(100), bottomLeft: Radius.circular(100)),
+            ),
+            width: showArrowInfo ? 120 : 0,
+            height: 50,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: PriceUtils.getPriceCaption(widget.price),
+            ),
+          ),
         ),
       ],
     );
