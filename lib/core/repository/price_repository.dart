@@ -16,8 +16,8 @@ class PricesRepository {
 
   final baseUrl = 'https://api.preciodelaluz.org/v1/prices/';
 
-  List<Price> _todayPrice = [];
-  List<Price> get todayPrice => _todayPrice;
+  List<Price> _todayPrices = [];
+  List<Price> get todayPrices => _todayPrices;
 
   late Price _average;
   Price get average => _average;
@@ -47,7 +47,7 @@ class PricesRepository {
   Stream<Price> get currentPriceStream => _currentPriceController.stream;
 
   void updateTodayPrices(List<Price> newPrices) {
-    _todayPrice = newPrices;
+    _todayPrices = newPrices;
     _pricesController.sink.add(newPrices);
   }
 

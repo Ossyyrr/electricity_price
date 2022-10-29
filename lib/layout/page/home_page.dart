@@ -45,9 +45,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SelectorDrawerSquare(
-                page: page,
-                onTap: (p) => setState(() => page = p),
-              ),
+                  page: page,
+                  onTap: (p) {
+                    setState(() => page = p);
+                  }),
               Expanded(
                 child: page == SelectorDrawerType.list ? const TodayPrices() : const Text('graph'),
               ),

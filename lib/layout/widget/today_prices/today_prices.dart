@@ -19,6 +19,7 @@ class TodayPrices extends StatelessWidget {
         Expanded(
           child: StreamBuilder<List<Price>>(
               stream: priceRepo.pricesStream,
+              initialData: priceRepo.todayPrices.isNotEmpty ? priceRepo.todayPrices : null,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final prices = snapshot.data!;
