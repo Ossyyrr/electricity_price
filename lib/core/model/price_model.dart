@@ -10,6 +10,7 @@ class Price {
   Price({
     required this.date,
     required this.hour,
+    required this.hourShort,
     required this.isCheap,
     required this.isUnderAvg,
     required this.market,
@@ -19,6 +20,7 @@ class Price {
 
   String date; // TODO To datetime
   String? hour;
+  String? hourShort;
   bool? isCheap;
   bool? isUnderAvg;
   String market;
@@ -27,7 +29,8 @@ class Price {
 
   factory Price.fromJson(Map<String, dynamic> json) => Price(
         date: json["date"],
-        hour: json["hour"] ?? '',
+        hour: json["hour"] != null ? formatHour(json["hour"]) : '',
+        hourShort: json["hour"] != null ? formatShortHour(json["hour"]) : '',
         isCheap: json["is-cheap"] ?? false,
         isUnderAvg: json["is-under-avg"] ?? false,
         market: json["market"],
@@ -44,4 +47,12 @@ class Price {
         "price": price,
         "units": units,
       };
+
+  static String formatHour(String hour) {
+    return '${hour.substring(0, 2)}:00h - ${hour.substring(0, 2)}:59h';
+  }
+
+  static String formatShortHour(String hour) {
+    return '${hour.substring(0, 2)}h - ${(int.parse(hour.substring(0, 2)) + 1)}h';
+  }
 }

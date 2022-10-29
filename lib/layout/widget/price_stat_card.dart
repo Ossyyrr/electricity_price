@@ -18,44 +18,49 @@ class PriceStatCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      width: size.width / 2.5,
-      height: 70,
-      margin: const EdgeInsets.all(6),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
-                child: Text(title),
-              )),
-          StreamBuilder<Price>(
-              stream: stream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '${snapshot.data!.price} ',
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        TextSpan(text: snapshot.data!.units),
-                      ],
-                    ),
-                  );
-                } else {
-                  return const CircularProgressIndicator();
-                }
-              })
-        ],
-      ),
-    );
+        width: size.width / 2.5,
+        height: 70,
+        margin: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: StreamBuilder<Price>(
+            stream: stream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+                          child: Text(snapshot.data!.hourShort!),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+                          child: Text(title),
+                        )),
+                    RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '${snapshot.data!.price} ',
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          TextSpan(text: snapshot.data!.units),
+                        ],
+                      ),
+                    )
+                  ],
+                );
+              } else {
+                return const CircularProgressIndicator();
+              }
+            }));
   }
 }

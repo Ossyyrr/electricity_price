@@ -18,8 +18,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-// Debajo una lista de precios, una tabla
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Precios de la luz'),

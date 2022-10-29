@@ -27,7 +27,7 @@ class _TodayPriceState extends State<TodayPrice> {
               SizedBox(
                   width: 80,
                   child: Text(
-                    '${widget.price.hour.toString().substring(0, 2)}:00  ${widget.price.hour.toString().substring(0, 2)}:59',
+                    widget.price.hour!,
                     style: const TextStyle(fontSize: 16),
                   )),
               Expanded(
