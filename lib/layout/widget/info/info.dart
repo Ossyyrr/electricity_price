@@ -35,10 +35,10 @@ class Info extends StatelessWidget {
           ),
           InfoCard(
             color: CustomColors.semaphoreOrange,
-            title: 'Punta',
-            code: 'P1',
-            infoPrice: 'La más cara',
-            description: 'De 10:00 a 14:00 y de 18:00 a 22:00',
+            title: 'Llana',
+            code: 'P2',
+            infoPrice: 'Precio medio',
+            description: 'De 8:00 a 10:00 y de 14:00 a 18:00',
           ),
           InfoCard(
             color: CustomColors.semaphoreGreen,

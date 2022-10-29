@@ -1,6 +1,5 @@
 import 'package:electricity_price/core/model/price_model.dart';
 import 'package:electricity_price/core/repository/price_repository.dart';
-import 'package:electricity_price/layout/widget/today_prices/caption.dart';
 import 'package:electricity_price/layout/widget/today_prices/today_price.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ class TodayPrices extends StatelessWidget {
 
     return Column(
       children: [
-        const Caption(),
+        // const Caption(),
         const SizedBox(height: 16),
         Expanded(
           child: StreamBuilder<List<Price>>(
